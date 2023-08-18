@@ -1,17 +1,18 @@
+using AppSettingsManager;
 using AppSettingsManager.Models;
-using Microsoft.Extensions.Options;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var twilioSettings = new TwilioSettings();
-builder.Configuration.GetSection("Twilio").Bind(twilioSettings);
-builder.Services.AddSingleton(twilioSettings);
+
 //new ConfigureFromConfigurationOptions<TwilioSettings>(builder.Configuration.GetSection("Twilio").Configure(twilioSettings);
 
 // Configure TwilioSettings
+builder.Services.AddConfiguration<TwilioSettings>(builder.Configuration, "Twilio");
+// Options
 builder.Services.Configure<TwilioSettings>(builder.Configuration.GetSection("Twilio"));
 
 var app = builder.Build();
