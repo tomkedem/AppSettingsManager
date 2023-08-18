@@ -1,6 +1,4 @@
-﻿using AppSettingsManager.Models;
-
-namespace AppSettingsManager
+﻿namespace AppSettingsManager
 {
     public static class ConfigurationExtension
     {
