@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 
 // Configure TwilioSettings
 builder.Services.AddConfiguration<TwilioSettings>(builder.Configuration, "Twilio");
+builder.Services.AddConfiguration<SocialLoginSettings>(builder.Configuration, "SocialLoginSettings");
 // Options
 builder.Services.Configure<TwilioSettings>(builder.Configuration.GetSection("Twilio"));
 

@@ -9,16 +9,19 @@ namespace AppSettingsManager.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _config;
-        private TwilioSettings _twilioSettings; 
+        private TwilioSettings _twilioSettings;
+        private readonly SocialLoginSettings _socialloginsettings;
         private readonly IOptions<TwilioSettings> _twilioOptions;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration config , IOptions<TwilioSettings> twilioOptions, TwilioSettings twilioSettings)
+        public HomeController(ILogger<HomeController> logger, IConfiguration config , IOptions<TwilioSettings> twilioOptions, 
+                                        TwilioSettings twilioSettings, SocialLoginSettings socialLoginSettings)
         {
             _logger = logger;
             _config = config;
             _twilioOptions = twilioOptions;
             //_twilioSettings = config.GetSection("Twilio").Get<TwilioSettings>();
             _twilioSettings = twilioSettings;
+            _socialloginsettings = socialLoginSettings;
         }
 
         public IActionResult Index()
@@ -45,6 +48,9 @@ namespace AppSettingsManager.Controllers
             ViewBag.BottomLevelSetting = _config.GetSection("FirstLevelSetting").GetSection("SecondLevelSetting")
                                         .GetSection("BottomLevelSetting").Value;
 
+
+            ViewBag.FacebookKey = _socialloginsettings.FacebookSettings.Key;
+            ViewBag.GoogleKey = _socialloginsettings.GoogleSettings.Key;
             return View();
         }
 
