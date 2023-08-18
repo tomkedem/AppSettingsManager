@@ -1,7 +1,9 @@
 ﻿@inject Microsoft.Extensions.Configuration.IConfiguration config
-@{
+@inject Microsoft.Extensions.Options.IOptions<SocialLoginSettings> socialLoginoptions
+
+@*@{
     ViewData["Title"] = "Home Page";
-}
+}*@
 
 <div class="row mb-2">
     <div class="col-md-6">
@@ -45,6 +47,15 @@
                 <strong class="d-inline-block mb-2 text-primary">Social Login</strong>
                 <div class="mb-1 text-muted">@ViewBag.FacebookKey</div>
                 <div class="mb-1 text-muted">@ViewBag.GoogleKey</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Social Login with options</strong>
+                <div class="mb-1 text-muted">@socialLoginoptions.Value.FacebookSettings?.Key</div>
+                <div class="mb-1 text-muted">@socialLoginoptions.Value.GoogleSettings?.Key</div>
             </div>
         </div>
     </div>
