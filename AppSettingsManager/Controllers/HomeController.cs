@@ -12,12 +12,13 @@ namespace AppSettingsManager.Controllers
         private TwilioSettings _twilioSettings; 
         private readonly IOptions<TwilioSettings> _twilioOptions;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration config , IOptions<TwilioSettings> twilioOptions)
+        public HomeController(ILogger<HomeController> logger, IConfiguration config , IOptions<TwilioSettings> twilioOptions, TwilioSettings twilioSettings)
         {
             _logger = logger;
             _config = config;
             _twilioOptions = twilioOptions;
-            _twilioSettings = config.GetSection("Twilio").Get<TwilioSettings>();
+            //_twilioSettings = config.GetSection("Twilio").Get<TwilioSettings>();
+            _twilioSettings = twilioSettings;
         }
 
         public IActionResult Index()
@@ -26,10 +27,17 @@ namespace AppSettingsManager.Controllers
             //ViewBag.TwilioAuthToken = _config.GetSection("Twilio").GetValue<string>("AuthToken");
             //ViewBag.TwilioAccountSid = _config.GetValue<string>("Twilio:AccountSid");
             //ViewBag.TwilioPhoneNumber = _twilioSettings.PhoneNumber;
-            ViewBag.TwilioAuthToken = _twilioOptions.Value.AuthToken;
-            ViewBag.TwilioAccountSid = _twilioOptions.Value.AccountSid;
-            ViewBag.TwilioPhoneNumber = _twilioOptions.Value.PhoneNumber;
 
+            // IOptions
+            //ViewBag.TwilioAuthToken = _twilioOptions.Value.AuthToken;
+            //ViewBag.TwilioAccountSid = _twilioOptions.Value.AccountSid;
+            //ViewBag.TwilioPhoneNumber = _twilioOptions.Value.PhoneNumber;
+
+            // IOptions
+            ViewBag.TwilioAuthToken = _twilioSettings.AuthToken;
+            ViewBag.TwilioAccountSid = _twilioSettings.AccountSid;
+            ViewBag.TwilioPhoneNumber = _twilioSettings.PhoneNumber;
+            
 
             //ViewBag.BottomLevelSetting = _config.GetValue<string>("FirstLevelSetting:SecondLevelSetting:BottomLevelSetting");
             //ViewBag.BottomLevelSetting = _config.GetSection("FirstLevelSetting").GetSection("SecondLevelSetting")
