@@ -8,6 +8,15 @@
     }
   },
   "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SendGridKey": "SendGrid from Environment Variables",
+        "Twilio__PhoneNumber": "+97239961591 Environment Variables Phone"
+      }
+    },
     "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,
@@ -32,15 +41,9 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7264;http://localhost:5092",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development"        
       }
     }
+
   }
 }
